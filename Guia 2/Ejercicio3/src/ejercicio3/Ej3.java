@@ -166,11 +166,18 @@ public class Ej3 extends javax.swing.JFrame {
 
     private void jAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarActionPerformed
         // TODO add your handling code here:
+        double precio = 0;
         try{
         String nombre = jNombre.getText();
-        Double precio = Double.parseDouble(jPrecio.getText());
-        Producto producto = new Producto (nombre,precio);
-        cargarDatos(producto);
+            if (jNombre.getText().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(this, "Uno de los campos es incorrecto, vuelva a cargar los datos.");
+            }else {
+             precio = Double.parseDouble(jPrecio.getText());
+              Producto producto = new Producto (nombre,precio);
+               cargarDatos(producto);
+            }
+        
+       
         jNombre.setText("");
         jPrecio.setText("");
         }catch (Exception e){
