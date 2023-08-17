@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ejercicio4;
 
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,14 +9,13 @@ import javax.swing.table.DefaultTableModel;
  * @author calga
  */
 public class BusquedaPorRubro extends javax.swing.JInternalFrame {
-    DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form BusquedaPorRubro
      */
     public BusquedaPorRubro() {
         initComponents();
         armarColumna();
-        cargarCategorias();
     }
 
     /**
@@ -33,7 +29,9 @@ public class BusquedaPorRubro extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtResultado = new javax.swing.JTable();
-        jCombo = new javax.swing.JComboBox<>();
+        jCombo = new JComboBox<>(Categoria.values());
+        jCombo.setSelectedItem(null);
+        ;
         jLabel1 = new javax.swing.JLabel();
 
         jtResultado.setModel(new javax.swing.table.DefaultTableModel(
@@ -127,15 +125,6 @@ int fila = jtResultado.getRowCount()-1;
     for (int i = fila; i >= 0; i--) {
         modelo.removeRow(i);
         System.out.println("Valor de fila al borrar: " + fila);
-    }
-   
+    }  
 }
-private void cargarCategorias(){
-    jCombo.addItem(Categoria.SELECCIONE);
-jCombo.addItem(Categoria.COMESTIBLE);
-jCombo.addItem(Categoria.LIMPIEZA);
-jCombo.addItem(Categoria.PERFUMERIA);
-
-}
-
 }

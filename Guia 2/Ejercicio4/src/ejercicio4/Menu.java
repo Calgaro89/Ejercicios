@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ejercicio4;
 
-import java.util.ArrayList;
 import java.util.TreeSet;
 
 /**
@@ -13,13 +9,13 @@ import java.util.TreeSet;
  */
 public class Menu extends javax.swing.JFrame {
 public static TreeSet<Productos> listado=new TreeSet<>();
-//public static ArrayList<Productos> listado=new ArrayList();
+
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
-        //cargoProductos();
+        
     }
 
     /**
@@ -196,14 +192,7 @@ public static TreeSet<Productos> listado=new TreeSet<>();
     // End of variables declaration//GEN-END:variables
 
 public static void cargoProductos(int codigo,String descripcion, int stock, double precio,Categoria categoria){
-    
-    
-    listado.add(new Productos (codigo,descripcion,stock,precio,categoria));
-//    listado.add(new Productos(2150,"Azucar Blanco",45,1200D,Categoria.ALIMENTOS));
-//    listado.add(new Productos(2151,"Yerba Mate",50,1453D,Categoria.ALIMENTOS));
-//    listado.add(new Productos(4021,"Monitor LED",12,43321D,Categoria.ELECTRONICA));
-//    listado.add(new Productos(3321,"Pantalón Hombre",25,25228D,Categoria.ROPA));
+     listado.add(new Productos (codigo,descripcion,stock,precio,categoria));
+
 }
-
-
 }

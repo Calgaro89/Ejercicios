@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package ejercicio4;
 
 import javax.swing.table.DefaultTableModel;
@@ -11,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
  * @author calga
  */
 public class BusquedaPorNombre extends javax.swing.JInternalFrame {
-public DefaultTableModel modelo=new DefaultTableModel(){
+private DefaultTableModel modelo=new DefaultTableModel(){
     @Override
     public boolean isCellEditable(int fila,int columna){
         return false;
@@ -48,11 +45,6 @@ public DefaultTableModel modelo=new DefaultTableModel(){
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Ingrese su búsqueda");
 
-        jtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtBusquedaActionPerformed(evt);
-            }
-        });
         jtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtBusquedaKeyReleased(evt);
@@ -110,21 +102,15 @@ public DefaultTableModel modelo=new DefaultTableModel(){
     private void jtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBusquedaKeyReleased
         // TODO add your handling code here:
         borrarFila();
-        
         for (Productos elProducto : Menu.listado) {
-            if(elProducto.getDescripcion().startsWith(jtBusqueda.getText())){
+            if(elProducto.getDescripcion().startsWith(jtBusqueda.getText().toUpperCase())){
                     modelo.addRow(new Object[]{
                 elProducto.getCodigo(),elProducto.getRubro(),
                 elProducto.getPrecio(),elProducto.getStock(),elProducto.getDescripcion()
             });
         }
         }
-        
     }//GEN-LAST:event_jtBusquedaKeyReleased
-
-    private void jtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtBusquedaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

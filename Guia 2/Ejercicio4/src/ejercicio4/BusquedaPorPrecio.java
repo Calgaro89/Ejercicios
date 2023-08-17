@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ejercicio4;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
  * @author calga
  */
 public class BusquedaPorPrecio extends javax.swing.JInternalFrame {
-    DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form BusquedaPorPrecio
      */
@@ -66,11 +63,6 @@ public class BusquedaPorPrecio extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("y");
 
-        jHasta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jHastaActionPerformed(evt);
-            }
-        });
         jHasta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jHastaKeyReleased(evt);
@@ -126,53 +118,17 @@ public class BusquedaPorPrecio extends javax.swing.JInternalFrame {
 
     private void jDesdeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDesdeKeyReleased
         // TODO add your handling code here:
-        borrarFila();
-        jHastaKeyReleased(evt);
-        double desde=0;
-        double hasta=0;
-        try{
-        desde = Double.parseDouble(jDesde.getText());
-        }catch (NumberFormatException e){
-            hasta = 999999999;
-         }
-            for (Productos elProducto : Menu.listado) {
-            if (elProducto.getPrecio()> desde && elProducto.getPrecio()< hasta) {
-                 modelo.addRow(new Object[]{
-                elProducto.getCodigo(),elProducto.getRubro(),
-                elProducto.getPrecio(),elProducto.getStock(),elProducto.getDescripcion()
-            });
-            }
+        if (! jDesde.getText().isEmpty() || jHasta.getText().isEmpty()) {
+            cargarLista();
         }
-
-        
     }//GEN-LAST:event_jDesdeKeyReleased
-
-    private void jHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHastaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jHastaActionPerformed
 
     private void jHastaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jHastaKeyReleased
         // TODO add your handling code here:
-         borrarFila();
-//         jHastaKeyReleased(evt);
-//        double desde=0;
-//        double hasta=0;
-//        try{
-//        hasta = Double.parseDouble(jHasta.getText());
-//        }catch (NumberFormatException e){
-//            desde= 0;
-//         }
-//            for (Productos elProducto : Menu.listado) {
-//            if (elProducto.getPrecio()> desde && elProducto.getPrecio()< hasta) {
-//                 modelo.addRow(new Object[]{
-//                elProducto.getCodigo(),elProducto.getMarca(),elProducto.getRubro(),
-//                elProducto.getPrecio(),elProducto.getStock(),elProducto.getDescripcion()
-//            });
-//            }
-//        }
+                if (! jDesde.getText().isEmpty() || jHasta.getText().isEmpty()) {
+            cargarLista();
+        }
 
-        
-     
     }//GEN-LAST:event_jHastaKeyReleased
 
 
@@ -202,4 +158,25 @@ int fila = jtResultado.getRowCount()-1;
     }
    
 }
+    private void cargarLista() {
+        try {
+            borrarFila();
+            Double desde = Double.parseDouble(jDesde.getText());
+            Double hasta = Double.parseDouble(jHasta.getText());
+            for (Productos elProducto : Menu.listado) {
+                if (elProducto.getPrecio() >= desde && elProducto.getPrecio() <= hasta) {
+                    modelo.addRow(new Object[]{
+                        elProducto.getCodigo(),
+                        elProducto.getDescripcion(),
+                        elProducto.getPrecio(),
+                        elProducto.getStock()
+                    });
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Los valores deben ser numericos validos.");
+            jDesde.setText("");
+            jHasta.setText("");
+        }
+    }
 }
