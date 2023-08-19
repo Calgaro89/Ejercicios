@@ -9,7 +9,16 @@ import javax.swing.table.DefaultTableModel;
  * @author calga
  */
 public class BusquedaPorPrecio extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column==5) {
+                return true;
+            }else {
+            return false;
+            }
+        }
+    };
     /**
      * Creates new form BusquedaPorPrecio
      */
@@ -49,6 +58,8 @@ public class BusquedaPorPrecio extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtResultado.setFocusable(false);
+        jtResultado.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtResultado);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N

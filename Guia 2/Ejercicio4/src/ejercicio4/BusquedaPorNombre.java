@@ -9,11 +9,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BusquedaPorNombre extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo=new DefaultTableModel(){
-    @Override
-    public boolean isCellEditable(int fila,int columna){
-        return false;
-    }
-};
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column==5) {
+                return true;
+            }else {
+            return false;
+            }
+        }
+    };
 
     /**
      * Creates new form BusquedaPorNombre
@@ -62,6 +66,8 @@ private DefaultTableModel modelo=new DefaultTableModel(){
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtResultado.setFocusable(false);
+        jtResultado.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtResultado);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
